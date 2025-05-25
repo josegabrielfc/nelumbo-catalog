@@ -1,0 +1,102 @@
+import { FilterSort } from "../ui/FilterSort";
+import { SearchPanel } from "../ui/SearchPanel";
+import { FilterPanel } from "../ui/FilterPanel/FilterPanel";
+import { ProductList } from "../ui/ProductList";
+import { Filter } from "../interfaces/types";
+
+export const Main = () => {
+  const sortOptions = [
+    "Precio más bajo",
+    "Precio más alto",
+    "Más recientes",
+    "Más antiguos",
+  ];
+
+  const filters: Filter[] = [
+    {
+      name: "brands",
+      label: "Marcas",
+      type: "checkbox",
+      options: [
+        { label: "Apple", value: "apple" },
+        { label: "Samsung", value: "samsung" },
+        { label: "Huawei", value: "huawei" },
+        { label: "Xiaomi", value: "xiaomi" },
+        { label: "Oppo", value: "oppo" },
+        { label: "Sony", value: "sony" },
+        { label: "OnePlus", value: "oneplus" },
+      ],
+    },
+    {
+      name: "price",
+      label: "Precio",
+      type: "range",
+    },
+    {
+      name: "reviews",
+      label: "Reviews",
+      type: "stars",
+      value: 4,
+    },
+  ];
+
+const handleFilters = (selectedFilters: any) => {
+    console.log("Filtros activos:", selectedFilters);
+  };
+
+  return (
+    <main className="w-full">
+      <div className="w-full px-4 pt-6 md:px-8 lg:px-24">
+        {/* Layout desktop */}
+        <div className="hidden lg:grid lg:grid-cols-[25%_75%] lg:gap-4">
+          <div className="h-[50px]">
+            <FilterSort
+              options={sortOptions}
+              onSort={(value) => console.log(value)}
+            />
+          </div>
+          <div className="h-[50px] flex items-center">
+            <div className="w-1/2">
+              <SearchPanel
+                options={sortOptions}
+                onSearch={(value) => console.log(value)}
+              />
+            </div>
+            <div className="w-1/2 flex justify-end">
+              <span className="text-gray-500 text-sm">
+                Mostrando 1-10 de 100 productos
+              </span>
+            </div>
+          </div>
+          <div className="min-h-[calc(70vh-50px)]">
+            <FilterPanel filters={filters} onFilterChange={handleFilters} />
+          </div>
+          <div className="min-h-[calc(70vh-50px)]">
+            <ProductList />
+          </div>
+        </div>
+        {/* Layout móvil (por defecto) */}
+        <div className="grid grid-cols-1 gap-4 lg:hidden">
+          <div className="h-[50px]">
+            <FilterSort
+              options={sortOptions}
+              onSort={(value) => console.log(value)}
+            />
+          </div>
+          <div className="h-[50px]">
+            <SearchPanel
+              options={sortOptions}
+              onSearch={(value) => console.log(value)}
+            />
+          </div>
+          <div className="min-h-[calc(50vh-50px)]">
+            <FilterPanel filters={filters} onFilterChange={handleFilters} />
+          </div>
+          <div className="min-h-[calc(50vh-50px)]">
+            <ProductList />
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+};

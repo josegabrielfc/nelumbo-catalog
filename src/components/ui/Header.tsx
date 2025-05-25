@@ -26,14 +26,7 @@ export const Header = ({
           >
             <Bars3Icon className="h-6 w-6" />
           </button>
-
-          <button
-            className="p-2 bg-[#EBEFF4] rounded-full hover:bg-[#F8F9FA] hover:shadow-lg transition-colors"
-            aria-label="Shopping cart"
-          >
-            <ShoppingCartIcon className="h-6 w-6 text-gray-700" />
-          </button>
-
+          
           {/* Version (Desktop) */}
           <nav className="hidden lg:flex items-center gap-4">
             <button className="px-6 py-4 rounded-lg font-semibold bg-[#FFD300] text-[#004AC1] hover:bg-[#ffe066] transition-colors">
@@ -44,6 +37,12 @@ export const Header = ({
               Iniciar sesión
             </button>
           </nav>
+          <button
+            className="p-2 bg-[#EBEFF4] rounded-full hover:bg-[#F8F9FA] hover:shadow-lg transition-colors"
+            aria-label="Shopping cart"
+          >
+            <ShoppingCartIcon className="h-6 w-6 text-gray-700" />
+          </button>
         </div>
       </div>
 

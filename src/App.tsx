@@ -1,12 +1,14 @@
 import { Navbar } from './components/ui/Navbar';
+import { Main } from './components/layout/main';
+import { Footer } from './components/ui/Footer';
 
 function App() {
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen grid grid-rows-[auto_1fr]">
       <Navbar />
-      <main className="pt-[118px] sm:pt-[118px] md:pt-[138px] lg:pt-[158px]">
-      </main>
+      <Main />
+      <div className="my-4"></div>
+      <Footer />
     </div>
   );
 }
