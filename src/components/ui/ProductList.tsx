@@ -1,6 +1,5 @@
 import { useState } from "react";
 import ProductCard from "./Card/ProductCard";
-import { mockProducts } from "../../data/mockProducts";
 import ProductModal from "./modal/ProductModal";
 import { Product } from "../../types/product";
 import { SortOption } from "../../types/sort";
@@ -10,6 +9,7 @@ import { useSearchProducts } from "../../hooks/useSearchProducts";
 import { FilterValues } from "../interfaces/types";
 
 interface ProductListProps {
+  products: Product[];
   sortBy?: SortOption;
   filters: FilterValues;
   searchText: string;
@@ -17,6 +17,7 @@ interface ProductListProps {
 }
 
 export const ProductList = ({
+  products,
   sortBy,
   filters,
   searchText,
@@ -25,7 +26,7 @@ export const ProductList = ({
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const filteredProducts = useFilterProducts(mockProducts, filters);
+  const filteredProducts = useFilterProducts(products, filters);
   const searchedProducts = useSearchProducts(filteredProducts, searchText, category);
   const sortedProducts = useSortProducts(searchedProducts, sortBy);
 
