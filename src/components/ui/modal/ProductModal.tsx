@@ -49,7 +49,7 @@ const ProductModal = ({ isOpen, onClose, product }: ProductModalProps) => {
 
           <div className="absolute top-0 left-0 right-0 h-64">
             <img
-              src="/src/assets/imgModal.png"
+              src="https://raw.githubusercontent.com/josegabrielfc/nelumbo-catalog/refs/heads/main/src/assets/imgModal.png"
               alt="Banner"
               className="w-full h-full object-cover"
             />
