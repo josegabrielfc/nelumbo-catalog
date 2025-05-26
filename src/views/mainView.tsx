@@ -1,10 +1,19 @@
+import { useState } from "react";
+import { mockProducts } from "../data/mockProducts";
+import { getUniqueBrands, getUniqueCategories } from "../utils/productUtils";
 import { FilterSort } from "../components/ui/FilterSort";
 import { SearchPanel } from "../components/ui/SearchPanel";
 import { FilterPanel } from "../components/ui/FilterPanel/FilterPanel";
 import { ProductList } from "../components/ui/ProductList";
-import { Filter } from "../components/interfaces/types";
+import { Filter, FilterValues } from "../components/interfaces/types";
+import { SortOption } from "../types/sort";
 
 export const Main = () => {
+  const [currentSort, setCurrentSort] = useState<SortOption>();
+  const [activeFilters, setActiveFilters] = useState<FilterValues>({});
+  const [searchText, setSearchText] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+
   const sortOptions = [
     "Precio más bajo",
     "Precio más alto",
@@ -17,15 +26,7 @@ export const Main = () => {
       name: "brands",
       label: "Marcas",
       type: "checkbox",
-      options: [
-        { label: "Apple", value: "apple" },
-        { label: "Samsung", value: "samsung" },
-        { label: "Huawei", value: "huawei" },
-        { label: "Xiaomi", value: "xiaomi" },
-        { label: "Oppo", value: "oppo" },
-        { label: "Sony", value: "sony" },
-        { label: "OnePlus", value: "oneplus" },
-      ],
+      options: getUniqueBrands(mockProducts),
     },
     {
       name: "price",
@@ -40,8 +41,13 @@ export const Main = () => {
     },
   ];
 
-const handleFilters = (selectedFilters: any) => {
-    console.log("Filtros activos:", selectedFilters);
+  const handleFilters = (selectedFilters: FilterValues) => {
+    setActiveFilters(selectedFilters);
+  };
+
+  const handleSearch = (text: string, category: string) => {
+    setSearchText(text);
+    setSelectedCategory(category);
   };
 
   return (
@@ -52,14 +58,14 @@ const handleFilters = (selectedFilters: any) => {
           <div className="h-[50px]">
             <FilterSort
               options={sortOptions}
-              onSort={(value) => console.log(value)}
+              onSort={(value) => setCurrentSort(value)}
             />
           </div>
           <div className="h-[50px] flex items-center">
             <div className="w-1/2">
               <SearchPanel
-                options={sortOptions}
-                onSearch={(value) => console.log(value)}
+                categories={getUniqueCategories(mockProducts)}
+                onSearch={handleSearch}
               />
             </div>
             <div className="w-1/2 flex justify-end">
@@ -72,7 +78,12 @@ const handleFilters = (selectedFilters: any) => {
             <FilterPanel filters={filters} onFilterChange={handleFilters} />
           </div>
           <div className="min-h-[calc(70vh-50px)]">
-            <ProductList />
+            <ProductList
+              sortBy={currentSort}
+              filters={activeFilters}
+              searchText={searchText}
+              category={selectedCategory}
+            />
           </div>
         </div>
         {/* Layout móvil (por defecto) */}
@@ -80,20 +91,25 @@ const handleFilters = (selectedFilters: any) => {
           <div className="h-[50px]">
             <FilterSort
               options={sortOptions}
-              onSort={(value) => console.log(value)}
+              onSort={(value) => setCurrentSort(value)}
             />
           </div>
           <div className="h-[50px]">
             <SearchPanel
-              options={sortOptions}
-              onSearch={(value) => console.log(value)}
+              categories={getUniqueCategories(mockProducts)}
+              onSearch={handleSearch}
             />
           </div>
           <div className="min-h-[calc(50vh-50px)]">
             <FilterPanel filters={filters} onFilterChange={handleFilters} />
           </div>
           <div className="min-h-[calc(50vh-50px)]">
-            <ProductList />
+            <ProductList
+              sortBy={currentSort}
+              filters={activeFilters}
+              searchText={searchText}
+              category={selectedCategory}
+            />
           </div>
         </div>
       </div>

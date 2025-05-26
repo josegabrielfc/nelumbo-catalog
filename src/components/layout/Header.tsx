@@ -1,20 +1,24 @@
 import { ShoppingCartIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import macropayLogo from "../../assets/macropay.svg";
 import { MenuProps } from "../interfaces/types";
+import { useNavigate } from "react-router-dom";
 
 export const Header = ({
   isOpen: isMenuOpen,
   setIsOpen: setIsMenuOpen,
 }: MenuProps) => {
+  const navigate = useNavigate();
   return (
     <header className="w-full bg-gradient-to-b from-[#004AC1] to-[#0744A8] text-white">
       <div className="w-full h-[70px] md:h-[90px] lg:h-[110px] px-4 md:px-8 lg:px-24 flex justify-between items-center">
-        <img
-          src={macropayLogo}
-          alt="Macropay Logo"
-          className="h-8 md:h-10"
-          loading="eager"
-        />
+            <button onClick={() => navigate('/')}>
+            <img
+              src={macropayLogo}
+              alt="Macropay Logo"
+              className="h-8 md:h-10"
+              loading="eager"
+            />
+            </button>
 
         <div className="flex items-center gap-4">
           {/* Boton menu (Mobile)*/}

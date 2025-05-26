@@ -14,9 +14,12 @@ export interface Filter {
   value?: number;
 }
 
-export type FilterValues = {
-  [key: string]: string[] | { min: number; max: number } | number;
-};
+export interface FilterValues {
+  brands?: string[];
+  reviews?: number;
+  price?: { min: number; max: number };
+  [key: string]: any;
+}
 
 export interface FilterPanelProps {
   filters: Filter[];

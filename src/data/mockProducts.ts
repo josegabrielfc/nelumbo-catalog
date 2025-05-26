@@ -9,7 +9,7 @@ export const mockProducts: Product[] = [
     precioOriginal: 1399.99,
     descuento: 10, // 10% de descuento
     reviews: 4.8,
-    categoria: 'Smartphones',
+    categoria: 'Smartphones Gama alta',
     imagen: ['/src/assets/iphone16promax.webp', '/src/assets/iphone16promax1.webp', '/src/assets/iphone16promax2.webp', '/src/assets/iphone16promax3.webp'],
     memoria: '256GB',
     ram: '8GB',
@@ -23,21 +23,21 @@ export const mockProducts: Product[] = [
     marca: 'Samsung',
     precio: 1199.99,
     reviews: 4.7,
-    categoria: 'Smartphones',
+    categoria: 'Smartphones Gama alta',
     imagen: ['/src/assets/s24ultra.webp', '/src/assets/s24ultra1.webp', '/src/assets/s24ultra2.webp'],
     memoria: '512GB',
     ram: '12GB'
   },
   {
     id: '3',
-    nombre: 'Motorola Edge 50',
-    marca: 'Motorola',
-    precio: 699.99,
-    reviews: 4.5,
-    categoria: 'Smartphones',
-    imagen: ['/src/assets/moto-edge50.webp'],
-    memoria: '256GB',
-    ram: '8GB'
+    nombre: 'Redmi Note 14 Pro',
+    marca: 'Xiaomi',
+    precio: 299.99,
+    reviews: 4.4,
+    categoria: 'Smartphones Gama media',
+    imagen: ['/src/assets/redmi-note14pro.webp'],
+    memoria: '128GB',
+    ram: '6GB'
   },
   {
     id: '4',
@@ -45,21 +45,21 @@ export const mockProducts: Product[] = [
     marca: 'Xiaomi',
     precio: 399.99,
     reviews: 4.6,
-    categoria: 'Smartphones',
+    categoria: 'Smartphones Gama media',
     imagen: ['/src/assets/poco-x7pro.webp'],
     memoria: '128GB',
     ram: '8GB'
   },
   {
     id: '5',
-    nombre: 'Redmi Note 14 Pro',
-    marca: 'Xiaomi',
-    precio: 299.99,
-    reviews: 4.4,
-    categoria: 'Smartphones',
-    imagen: ['/src/assets/redmi-note14pro.webp'],
-    memoria: '128GB',
-    ram: '6GB'
+    nombre: 'Motorola Edge 50',
+    marca: 'Motorola',
+    precio: 699.99,
+    reviews: 3.9,
+    categoria: 'Smartphones Gama media',
+    imagen: ['/src/assets/moto-edge50.webp'],
+    memoria: '256GB',
+    ram: '8GB'
   },
   {
     id: '6',
@@ -67,7 +67,7 @@ export const mockProducts: Product[] = [
     marca: 'Samsung',
     precio: 199.99,
     reviews: 4.3,
-    categoria: 'Smartphones',
+    categoria: 'Smartphones Gama baja',
     imagen: ['/src/assets/galaxy-a05.webp'],
     memoria: '64GB',
     ram: '4GB'
@@ -77,8 +77,8 @@ export const mockProducts: Product[] = [
     nombre: 'ZTE Blade V60',
     marca: 'ZTE',
     precio: 249.99,
-    reviews: 3.8,
-    categoria: 'Smartphones',
+    reviews: 2.9,
+    categoria: 'Smartphones Gama baja',
     imagen: ['/src/assets/zte-v60.webp'],
     memoria: '128GB',
     ram: '6GB'
