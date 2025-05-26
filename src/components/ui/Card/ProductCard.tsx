@@ -1,15 +1,20 @@
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { useState } from "react";
 import Card from "./Card";
+import { StarIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
 
 /**
  * @interface ProductCardProps
  * @description Propiedades requeridas para el componente ProductCard
  */
 interface ProductCardProps {
-  image: string;
+  id: string;
+  image: string[];
   name: string;
-  price: string | number;  
+  price: number;
+  discount?: number;
+  reviews: number;
   extra?: string;
   onClick?: () => void;
 }
@@ -18,66 +23,114 @@ interface ProductCardProps {
  * @component ProductCard
  * @description Componente que muestra la información de una Producta en formato de tarjeta
  * Incluye imagen, nombres común, nombre científico y cantidad
- * 
+ *
  * @param {ProductCardProps} props - Propiedades del componente
  * @returns {JSX.Element} Componente ProductCard
  */
-const ProductCard = ({ name, price, image,
-  extra = "flex flex-col w-full h-full !p-4 3xl:p-![18px] cursor-pointer transition-transform hover:scale-105",
-  onClick
+const ProductCard = ({
+  id,
+  name,
+  price,
+  image,
+  discount,
+  reviews,
+  extra = "flex flex-col w-full h-full !p-4 3xl:p-![18px] transition-transform hover:scale-105",
+  onClick,
 }: ProductCardProps) => {
-  // Estado para controlar el botón de favorito
   const [heart, setHeart] = useState(false);
+  const navigate = useNavigate();
+  
+  const descuentoNumerico = discount !== undefined ? discount : 1;
+  const descuento = ((price * (100 - descuentoNumerico)) / 100).toFixed(2);
+
+  const cuotaBase = discount ? parseFloat(descuento) : price;
+  const cuotaMensual = (cuotaBase / 12).toFixed(2);
+  const cuotaSemanal = (cuotaBase / 48).toFixed(2);
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (!e.currentTarget.contains(e.target as Node) || (e.target as HTMLElement).closest("button")) return;
+    navigate(`/phone/${id}`);
+  };
 
   return (
-    <Card
-      extra={extra}
-      onClick={onClick}
-    >
+    <Card extra={extra} onClick={handleCardClick}>
       <div className="h-full w-full">
-        {/* Contenedor de la imagen y botón de favorito */}
         <div className="relative">
-          <div className="relative w-full h-96"> {/* Cambiado de h-64 a h-96 */}
+          <div className="relative w-full h-96">
+            {" "}
             <img
-              src={image}
-              className="mb-3 h-full w-full object-cover rounded-md 3xl:h-full 3xl:w-full"
+              src={image[0]}
+              className="mb-3 h-full w-full object-cover rounded-md 3xl:h-full 3xl:w-full px-6"
               alt={`Imagen de ${name}`}
             />
-            {/* Botón de favorito */}
             <button
               onClick={(e) => {
-                e.stopPropagation(); // Prevent card click when clicking heart
+                e.stopPropagation();
                 setHeart(!heart);
               }}
-              className="absolute right-0 top-0 flex items-center justify-center rounded-md bg-transparent p-2 text-brand-500 hover:cursor-pointer"
+              className="absolute right-0 top-0 flex items-center justify-center rounded-md bg-transparent  text-brand-500 "
             >
               <div className="flex h-full w-full items-center justify-center rounded-md text-3xl">
                 {!heart ? (
-                  <IoHeartOutline />
+                  <IoHeartOutline className="text-gray-400" />
                 ) : (
-                  <IoHeart className="text-brand-500" />
+                  <IoHeart className="text-brand-500 text-blue-800" />
                 )}
               </div>
             </button>
           </div>
         </div>
 
-        {/* Sección de información de la Producta */}
+
         <hr className="border-t border-white my-2" />
-        <div className="mb-3 flex items-center justify-between px-1 md:flex-col md:items-start 
-        lg:flex-row lg:justify-between xl:flex-col xl:items-start 3xl:flex-row 3xl:justify-between">
-          <div className="mb-2">
-            <p className="text-lg font-bold text-white">
-              Producto: {name}
-            </p>
+        <div className="mb-3 flex items-stretch justify-between px-1 gap-4">
+          <div className="flex flex-col gap-2 flex-1 min-w-0">
+            <p className="text-lg font-bold text-black break-words">{name}</p>
+
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <StarIcon
+                  key={star}
+                  className={`h-4 w-4 ${
+                    star <= reviews
+                      ? "text-yellow-400 fill-current"
+                      : "text-gray-300"
+                  }`}
+                />
+              ))}
+              <span className="text-xs text-gray-600 ml-1">
+                ({reviews.toFixed(1)})
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-1 text-sm text-gray-400">
+              <p className="font-medium">${cuotaSemanal} p/semana</p>
+              <p className="font-medium">o ${cuotaMensual} p/mes</p>
+            </div>
           </div>
-          <div className="flex items-center justify-between md:flex-col md:items-start 
-          lg:flex-row lg:justify-between xl:flex-col 2xl:items-start 3xl:flex-row 
-          3xl:items-center 3xl:justify-between">
-            <div className="flex">
-              <p className="mb-2 text-sm font-normal text-gray-200">
-                Precio: {price}
-              </p>
+
+          <div className="flex flex-col text-right items-end flex-shrink-0">
+            {discount ? (
+              <>
+                <p className="mb-2 text-4xl font-bold text-blue-800">
+                  ${descuento}
+                </p>
+                <p className="mb-2 text-2xl font-medium text-gray-500 line-through">
+                  ${price}
+                </p>
+              </>
+            ) : (
+              <p className="mb-2 text-4xl font-bold text-blue-800">${price}</p>
+            )}
+            <div className="flex justify-end">
+              <button
+                className="w-fit px-4 py-2 rounded-lg font-semibold bg-[#FFD300] text-[#004AC1] transition-colors cursor-pointer hover:bg-[#FFC700] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onClick?.();
+                }}
+              > Lo Quiero!
+              </button>
             </div>
           </div>
         </div>

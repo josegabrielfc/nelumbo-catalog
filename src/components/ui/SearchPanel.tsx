@@ -31,7 +31,7 @@ export const SearchPanel = ({ options, onSearch }: SearchPanelProps) => {
             className="w-full h-full px-3 appearance-none bg-gray-500 pr-8 text-white font-semibold text-s focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 rounded-r-[30px]"
             defaultValue=""
           >
-            <option value="">Seleccionar</option>
+            <option value="">Categorias</option>
             {options.map((option) => (
               <option key={option} value={option}>
                 {option}

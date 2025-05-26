@@ -7,8 +7,9 @@ export interface Product {
   descuento?: number;
   reviews: number; // escala de 1 a 5
   categoria: string;
-  imagen: string;
+  imagen: string[];
   memoria?: string;
   ram?: string;
   color?: string;
+  descripcion?: string;
 }
