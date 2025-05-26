@@ -4,6 +4,10 @@ import { FilterValues } from '../components/interfaces/types';
 
 export const useFilterProducts = (products: Product[], filters: FilterValues) => {
   return useMemo(() => {
+    if (!filters || Object.keys(filters).length === 0) {
+      return products;
+    }
+
     let filteredProducts = [...products];
 
     if (filters.brands && (filters.brands as string[]).length > 0) {
@@ -21,6 +25,7 @@ export const useFilterProducts = (products: Product[], filters: FilterValues) =>
 
     if (filters.price) {
       const { min, max } = filters.price as { min: number; max: number };
+      if (min === 0 && max === 0) return filteredProducts;
       
       filteredProducts = filteredProducts.filter(product => {
         if (min && !max) {

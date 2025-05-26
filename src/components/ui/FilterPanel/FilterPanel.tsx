@@ -67,7 +67,7 @@ export const FilterPanel = ({ filters, onFilterChange }: FilterPanelProps) => {
             </div>
           ))}
 
-          <div className="pt-4 border-t border-gray-100 space-y-2">
+          <div className="pt-4 space-y-2">
             <button
               onClick={handleApplyFilters}
               className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
