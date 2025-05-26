@@ -113,7 +113,7 @@ const ProductModal = ({ isOpen, onClose, product }: ProductModalProps) => {
               <div className="pt-3">
                 <div className="flex justify-center">
                   <img
-                    src="/src/assets/check.png"
+                    src="https://raw.githubusercontent.com/josegabrielfc/nelumbo-catalog/refs/heads/main/src/assets/check.png"
                     alt="Check Logo"
                     className="h-16 w-16"
                   />
