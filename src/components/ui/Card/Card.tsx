@@ -24,7 +24,7 @@ function Card(props: CardProps) {
   return (
     <div
       className={`relative flex flex-col rounded-[10px] border-[1px] border-gray-200 
-      bg-[#004AC1] text-white bg-clip-border shadow-lg ${extra}`}
+      bg-white text-white bg-clip-border shadow-lg ${extra}`}
       {...rest}
     >
       {children}
