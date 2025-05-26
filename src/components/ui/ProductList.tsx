@@ -6,19 +6,28 @@ import { Product } from "../../types/product";
 import { SortOption } from "../../types/sort";
 import { useSortProducts } from "../../hooks/useSortProducts";
 import { useFilterProducts } from "../../hooks/useFilterProducts";
+import { useSearchProducts } from "../../hooks/useSearchProducts";
 import { FilterValues } from "../interfaces/types";
 
 interface ProductListProps {
   sortBy?: SortOption;
   filters: FilterValues;
+  searchText: string;
+  category: string;
 }
 
-export const ProductList = ({ sortBy, filters }: ProductListProps) => {
+export const ProductList = ({
+  sortBy,
+  filters,
+  searchText,
+  category
+}: ProductListProps) => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
   const filteredProducts = useFilterProducts(mockProducts, filters);
-  const sortedProducts = useSortProducts(filteredProducts, sortBy);
+  const searchedProducts = useSearchProducts(filteredProducts, searchText, category);
+  const sortedProducts = useSortProducts(searchedProducts, sortBy);
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);

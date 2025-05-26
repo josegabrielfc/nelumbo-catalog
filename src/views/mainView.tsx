@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { mockProducts } from "../data/mockProducts";
-import { getUniqueBrands } from "../utils/productUtils";
+import { getUniqueBrands, getUniqueCategories } from "../utils/productUtils";
 import { FilterSort } from "../components/ui/FilterSort";
 import { SearchPanel } from "../components/ui/SearchPanel";
 import { FilterPanel } from "../components/ui/FilterPanel/FilterPanel";
@@ -11,6 +11,8 @@ import { SortOption } from "../types/sort";
 export const Main = () => {
   const [currentSort, setCurrentSort] = useState<SortOption>();
   const [activeFilters, setActiveFilters] = useState<FilterValues>({});
+  const [searchText, setSearchText] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const sortOptions = [
     "Precio más bajo",
@@ -43,6 +45,11 @@ export const Main = () => {
     setActiveFilters(selectedFilters);
   };
 
+  const handleSearch = (text: string, category: string) => {
+    setSearchText(text);
+    setSelectedCategory(category);
+  };
+
   return (
     <main className="w-full">
       <div className="w-full px-4 pt-6 md:px-8 lg:px-24">
@@ -57,8 +64,8 @@ export const Main = () => {
           <div className="h-[50px] flex items-center">
             <div className="w-1/2">
               <SearchPanel
-                options={sortOptions}
-                onSearch={(value) => console.log(value)}
+                categories={getUniqueCategories(mockProducts)}
+                onSearch={handleSearch}
               />
             </div>
             <div className="w-1/2 flex justify-end">
@@ -71,7 +78,12 @@ export const Main = () => {
             <FilterPanel filters={filters} onFilterChange={handleFilters} />
           </div>
           <div className="min-h-[calc(70vh-50px)]">
-            <ProductList sortBy={currentSort} filters={activeFilters}/>
+            <ProductList
+              sortBy={currentSort}
+              filters={activeFilters}
+              searchText={searchText}
+              category={selectedCategory}
+            />
           </div>
         </div>
         {/* Layout móvil (por defecto) */}
@@ -84,15 +96,20 @@ export const Main = () => {
           </div>
           <div className="h-[50px]">
             <SearchPanel
-              options={sortOptions}
-              onSearch={(value) => console.log(value)}
+              categories={getUniqueCategories(mockProducts)}
+              onSearch={handleSearch}
             />
           </div>
           <div className="min-h-[calc(50vh-50px)]">
             <FilterPanel filters={filters} onFilterChange={handleFilters} />
           </div>
           <div className="min-h-[calc(50vh-50px)]">
-            <ProductList sortBy={currentSort} filters={activeFilters}/>
+            <ProductList
+              sortBy={currentSort}
+              filters={activeFilters}
+              searchText={searchText}
+              category={selectedCategory}
+            />
           </div>
         </div>
       </div>

@@ -7,3 +7,11 @@ export const getUniqueBrands = (products: Product[]) => {
     value: brand.toLowerCase()
   }));
 };
+
+export const getUniqueCategories = (products: Product[]) => {
+  const categoriesSet = new Set(products.map(product => product.categoria));
+  return Array.from(categoriesSet).map(category => ({
+    label: category,
+    value: category
+  }));
+};
