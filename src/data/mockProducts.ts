@@ -1,5 +1,7 @@
 import { Product } from '../types/product';
 
+const url = 'https://raw.githubusercontent.com/josegabrielfc/nelumbo-catalog/main';
+
 export const mockProducts: Product[] = [
   {
     id: '1',
@@ -10,7 +12,12 @@ export const mockProducts: Product[] = [
     descuento: 10, // 10% de descuento
     reviews: 4.8,
     categoria: 'Smartphones Gama alta',
-    imagen: ['/src/assets/iphone16promax.webp', '/src/assets/iphone16promax1.webp', '/src/assets/iphone16promax2.webp', '/src/assets/iphone16promax3.webp'],
+    imagen: [
+      `${url}/src/assets/iphone16promax.webp`,
+      `${url}/src/assets/iphone16promax1.webp`,
+      `${url}/src/assets/iphone16promax2.webp`,
+      `${url}/src/assets/iphone16promax3.webp`
+    ],
     memoria: '256GB',
     ram: '8GB',
     descripcion:'iPhone 16 Pro Max.'+
@@ -24,7 +31,11 @@ export const mockProducts: Product[] = [
     precio: 1199.99,
     reviews: 4.7,
     categoria: 'Smartphones Gama alta',
-    imagen: ['/src/assets/s24ultra.webp', '/src/assets/s24ultra1.webp', '/src/assets/s24ultra2.webp'],
+    imagen: [
+      `${url}/src/assets/s24ultra.webp`,
+      `${url}/src/assets/s24ultra1.webp`,
+      `${url}/src/assets/s24ultra2.webp`
+    ],
     memoria: '512GB',
     ram: '12GB'
   },
@@ -35,7 +46,7 @@ export const mockProducts: Product[] = [
     precio: 299.99,
     reviews: 4.4,
     categoria: 'Smartphones Gama media',
-    imagen: ['/src/assets/redmi-note14pro.webp'],
+    imagen: [`${url}/src/assets/redmi-note14pro.webp`],
     memoria: '128GB',
     ram: '6GB'
   },
@@ -46,7 +57,7 @@ export const mockProducts: Product[] = [
     precio: 399.99,
     reviews: 4.6,
     categoria: 'Smartphones Gama media',
-    imagen: ['/src/assets/poco-x7pro.webp'],
+    imagen: [`${url}/src/assets/poco-x7pro.webp`],
     memoria: '128GB',
     ram: '8GB'
   },
@@ -57,7 +68,7 @@ export const mockProducts: Product[] = [
     precio: 699.99,
     reviews: 3.9,
     categoria: 'Smartphones Gama media',
-    imagen: ['/src/assets/moto-edge50.webp'],
+    imagen: [`${url}/src/assets/moto-edge50.webp`],
     memoria: '256GB',
     ram: '8GB'
   },
@@ -68,7 +79,7 @@ export const mockProducts: Product[] = [
     precio: 199.99,
     reviews: 4.3,
     categoria: 'Smartphones Gama baja',
-    imagen: ['/src/assets/galaxy-a05.webp'],
+    imagen: [`${url}/src/assets/galaxy-a05.webp`],
     memoria: '64GB',
     ram: '4GB'
   },
@@ -79,7 +90,7 @@ export const mockProducts: Product[] = [
     precio: 249.99,
     reviews: 2.9,
     categoria: 'Smartphones Gama baja',
-    imagen: ['/src/assets/zte-v60.webp'],
+    imagen: [`${url}/src/assets/zte-v60.webp`],
     memoria: '128GB',
     ram: '6GB'
   }
@@ -96,7 +107,12 @@ export const mockMotos: Product[] = [
     descuento: 7,
     reviews: 4.9,
     categoria: 'Motos Deportivas',
-    imagen: ['src/assets/Mt09_4.jpeg', 'src/assets/Mt09_1.png', 'src/assets/Mt09_2.png', 'src/assets/Mt09_3.png'],
+    imagen: [
+      `${url}/src/assets/Mt09_4.jpeg`,
+      `${url}/src/assets/Mt09_1.png`,
+      `${url}/src/assets/Mt09_2.png`,
+      `${url}/src/assets/Mt09_3.png`
+    ],
     descripcion: 'La Yamaha MT-09 es una motocicleta naked deportiva con motor de 890cc, 3 cilindros y tecnología de última generación.'
   },
   {
@@ -107,7 +123,10 @@ export const mockMotos: Product[] = [
     descuento: 5,
     reviews: 4.8,
     categoria: 'Motos Deportivas',
-    imagen: ['src/assets/Ninja_400.png', 'src/assets/Ninja_400_1.png'],
+    imagen: [
+      `${url}/src/assets/Ninja_400.png`,
+      `${url}/src/assets/Ninja_400_1.png`
+    ],
     descripcion: 'Motocicleta deportiva ligera ideal para principiantes y experimentados.'
   },
   {
@@ -117,7 +136,10 @@ export const mockMotos: Product[] = [
     precio: 9999.99,
     reviews: 4.7,
     categoria: 'Motos Deportivas',
-    imagen: ['src/assets/honda.webp', 'src/assets/honda_1.png'],
+    imagen: [
+      `${url}/src/assets/honda.webp`,
+      `${url}/src/assets/honda_1.png`
+    ],
     descripcion: 'Deportiva de media cilindrada con motor de 4 cilindros en línea y 649cc.'
   }  
 ];
