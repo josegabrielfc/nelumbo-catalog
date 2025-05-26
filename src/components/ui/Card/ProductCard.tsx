@@ -49,7 +49,7 @@ const ProductCard = ({
 
   const handleCardClick = (e: React.MouseEvent) => {
     if (!e.currentTarget.contains(e.target as Node) || (e.target as HTMLElement).closest("button")) return;
-    navigate(`/phone/${id}`);
+    navigate(`/product/${id}`);
   };
 
   return (
