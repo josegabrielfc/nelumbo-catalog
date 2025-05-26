@@ -6,7 +6,7 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 import macropayLogo from "../../assets/macropay.svg";
-import { Emoji } from "./Emoji";
+import { Emoji } from "../ui/Emoji";
 
 export const Footer = () => {
   return (

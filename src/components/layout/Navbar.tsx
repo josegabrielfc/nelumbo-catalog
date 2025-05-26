@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Header } from "./Header";
-import { Categories } from "./Categories";
+import { Categories } from "../ui/Categories";
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

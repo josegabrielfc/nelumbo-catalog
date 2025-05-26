@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar } from "./components/ui/Navbar";
-import { Footer } from "./components/ui/Footer";
+import { Navbar } from "./components/layout/Navbar";
+import { Footer } from "./components/layout/Footer";
 import { Error } from "./views/Error404";
 import RoutesApp from "./routes/Routes";
 import { useValidRoute } from "./hooks/useValidRoute";
