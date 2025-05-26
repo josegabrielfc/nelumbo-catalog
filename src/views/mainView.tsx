@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { FilterSort } from "../components/ui/FilterSort";
 import { SearchPanel } from "../components/ui/SearchPanel";
 import { FilterPanel } from "../components/ui/FilterPanel/FilterPanel";
 import { ProductList } from "../components/ui/ProductList";
 import { Filter } from "../components/interfaces/types";
+import { SortOption } from "../types/sort";
 
 export const Main = () => {
+  const [currentSort, setCurrentSort] = useState<SortOption>();
+
   const sortOptions = [
     "Precio más bajo",
     "Precio más alto",
@@ -40,7 +44,7 @@ export const Main = () => {
     },
   ];
 
-const handleFilters = (selectedFilters: any) => {
+  const handleFilters = (selectedFilters: any) => {
     console.log("Filtros activos:", selectedFilters);
   };
 
@@ -52,7 +56,7 @@ const handleFilters = (selectedFilters: any) => {
           <div className="h-[50px]">
             <FilterSort
               options={sortOptions}
-              onSort={(value) => console.log(value)}
+              onSort={(value) => setCurrentSort(value)}
             />
           </div>
           <div className="h-[50px] flex items-center">
@@ -72,7 +76,7 @@ const handleFilters = (selectedFilters: any) => {
             <FilterPanel filters={filters} onFilterChange={handleFilters} />
           </div>
           <div className="min-h-[calc(70vh-50px)]">
-            <ProductList />
+            <ProductList sortBy={currentSort} />
           </div>
         </div>
         {/* Layout móvil (por defecto) */}
@@ -80,7 +84,7 @@ const handleFilters = (selectedFilters: any) => {
           <div className="h-[50px]">
             <FilterSort
               options={sortOptions}
-              onSort={(value) => console.log(value)}
+              onSort={(value) => setCurrentSort(value)}
             />
           </div>
           <div className="h-[50px]">
@@ -93,7 +97,7 @@ const handleFilters = (selectedFilters: any) => {
             <FilterPanel filters={filters} onFilterChange={handleFilters} />
           </div>
           <div className="min-h-[calc(50vh-50px)]">
-            <ProductList />
+            <ProductList sortBy={currentSort} />
           </div>
         </div>
       </div>

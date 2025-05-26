@@ -30,14 +30,14 @@ export const mockProducts: Product[] = [
   },
   {
     id: '3',
-    nombre: 'Motorola Edge 50',
-    marca: 'Motorola',
-    precio: 699.99,
-    reviews: 4.5,
+    nombre: 'Redmi Note 14 Pro',
+    marca: 'Xiaomi',
+    precio: 299.99,
+    reviews: 4.4,
     categoria: 'Smartphones',
-    imagen: ['/src/assets/moto-edge50.webp'],
-    memoria: '256GB',
-    ram: '8GB'
+    imagen: ['/src/assets/redmi-note14pro.webp'],
+    memoria: '128GB',
+    ram: '6GB'
   },
   {
     id: '4',
@@ -52,14 +52,14 @@ export const mockProducts: Product[] = [
   },
   {
     id: '5',
-    nombre: 'Redmi Note 14 Pro',
-    marca: 'Xiaomi',
-    precio: 299.99,
-    reviews: 4.4,
+    nombre: 'Motorola Edge 50',
+    marca: 'Motorola',
+    precio: 699.99,
+    reviews: 4.5,
     categoria: 'Smartphones',
-    imagen: ['/src/assets/redmi-note14pro.webp'],
-    memoria: '128GB',
-    ram: '6GB'
+    imagen: ['/src/assets/moto-edge50.webp'],
+    memoria: '256GB',
+    ram: '8GB'
   },
   {
     id: '6',
