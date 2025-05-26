@@ -7,6 +7,7 @@ import { FilterPanel } from "../components/ui/FilterPanel/FilterPanel";
 import { ProductList } from "../components/ui/ProductList";
 import { Filter, FilterValues } from "../components/interfaces/types";
 import { SortOption } from "../types/sort";
+import { ProductsGrid } from "../components/layout/ProductsGrid";
 
 export const Main = () => {
   const [currentSort, setCurrentSort] = useState<SortOption>();
@@ -113,6 +114,8 @@ export const Main = () => {
           </div>
         </div>
       </div>
+      
+      <ProductsGrid products={mockProducts} title="Productos Destacados"/>
     </main>
   );
 };

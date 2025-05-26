@@ -19,8 +19,7 @@ const AppContent = () => {
   return (
     <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
       <Navbar />
-      <RoutesApp />
-        <div className="my-4"></div>
+        <RoutesApp />
       <Footer />
     </div>
   );
