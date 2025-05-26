@@ -12,6 +12,13 @@ export const useFilterProducts = (products: Product[], filters: FilterValues) =>
       );
     }
 
+    if (filters.reviews) {
+      const maxReviews = filters.reviews as number;
+      filteredProducts = filteredProducts.filter(product => 
+        product.reviews <= maxReviews
+      );
+    }
+
     return filteredProducts;
   }, [products, filters]);
 };
