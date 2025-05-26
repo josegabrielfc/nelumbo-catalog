@@ -84,3 +84,46 @@ export const mockProducts: Product[] = [
     ram: '6GB'
   }
 ];
+
+
+export const mockMotos: Product[] = [
+  {
+    id: 'moto1',
+    nombre: 'Yamaha MT-09',
+    marca: 'Yamaha',
+    precio: 12999.99,
+    precioOriginal: 13999.99,
+    descuento: 7,
+    reviews: 4.9,
+    categoria: 'Motos Deportivas',
+    imagen: ['src/assets/Mt09_4.jpeg', 'src/assets/Mt09_1.png', 'src/assets/Mt09_2.png', 'src/assets/Mt09_3.png'],
+    descripcion: 'La Yamaha MT-09 es una motocicleta naked deportiva con motor de 890cc, 3 cilindros y tecnología de última generación.'
+  },
+  {
+    id: 'moto2',
+    nombre: 'Kawasaki Ninja 400',
+    marca: 'Kawasaki',
+    precio: 6999.99,
+    descuento: 5,
+    reviews: 4.8,
+    categoria: 'Motos Deportivas',
+    imagen: ['src/assets/Ninja_400.png', 'src/assets/Ninja_400_1.png'],
+    descripcion: 'Motocicleta deportiva ligera ideal para principiantes y experimentados.'
+  },
+  {
+    id: 'moto3',
+    nombre: 'Honda CBR650R',
+    marca: 'Honda',
+    precio: 9999.99,
+    reviews: 4.7,
+    categoria: 'Motos Deportivas',
+    imagen: ['src/assets/honda.webp', 'src/assets/honda_1.png'],
+    descripcion: 'Deportiva de media cilindrada con motor de 4 cilindros en línea y 649cc.'
+  }  
+];
+
+export const productsByCategory = {
+  'Home': mockProducts,
+  'Celulares': mockProducts,
+  'Motos': mockMotos,
+};
