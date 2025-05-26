@@ -1,8 +1,8 @@
-import { FilterSort } from "../ui/FilterSort";
-import { SearchPanel } from "../ui/SearchPanel";
-import { FilterPanel } from "../ui/FilterPanel/FilterPanel";
-import { ProductList } from "../ui/ProductList";
-import { Filter } from "../interfaces/types";
+import { FilterSort } from "../components/ui/FilterSort";
+import { SearchPanel } from "../components/ui/SearchPanel";
+import { FilterPanel } from "../components/ui/FilterPanel/FilterPanel";
+import { ProductList } from "../components/ui/ProductList";
+import { Filter } from "../components/interfaces/types";
 
 export const Main = () => {
   const sortOptions = [
