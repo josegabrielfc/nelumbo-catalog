@@ -19,6 +19,23 @@ export const useFilterProducts = (products: Product[], filters: FilterValues) =>
       );
     }
 
+    if (filters.price) {
+      const { min, max } = filters.price as { min: number; max: number };
+      
+      filteredProducts = filteredProducts.filter(product => {
+        if (min && !max) {
+          return product.precio >= min;
+        }
+        if (!min && max) {
+          return product.precio <= max;
+        }
+        if (min && max) {
+          return product.precio >= min && product.precio <= max;
+        }
+        return true;
+      });
+    }
+
     return filteredProducts;
   }, [products, filters]);
 };
