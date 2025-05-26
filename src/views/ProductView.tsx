@@ -5,6 +5,7 @@ import { mockProducts } from "../data/mockProducts";
 import { StarIcon } from "@heroicons/react/24/outline";
 import { SiVisa, SiMastercard } from "react-icons/si";
 import { ProductDetailSection } from "./ProductDetailSection";
+import { ProductsGrid } from "../components/layout/ProductsGrid";
 
 export const ProductView = () => {
   // Hook para obtener el parametro id de la URL
@@ -36,6 +37,7 @@ export const ProductView = () => {
   const cuotaBase = product.descuento ? parseFloat(descuento) : product.precio;
 
   return (
+  <>
     <div className="container mx-auto px-4 py-8">
       <div className="flex items-center gap-2 text-sm text-gray-600 mb-8">
         <a href="/" className="hover:text-blue-600">
@@ -194,5 +196,7 @@ export const ProductView = () => {
       </div>
       <ProductDetailSection product={product} />
     </div>
+    <ProductsGrid products={mockProducts} title="Productos Relacionados"/>
+  </>
   );
 };
