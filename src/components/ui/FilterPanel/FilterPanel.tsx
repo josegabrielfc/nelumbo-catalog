@@ -8,13 +8,19 @@ export const FilterPanel = ({ filters, onFilterChange }: FilterPanelProps) => {
   const [selectedValues, setSelectedValues] = useState<FilterValues>({});
 
   const handleFilterChange = (category: string, value: FilterValues[string]) => {
-    const updatedFilters = {
-      ...selectedValues,
+    setSelectedValues(prev => ({
+      ...prev,
       [category]: value,
-    };
-    
-    setSelectedValues(updatedFilters);
-    onFilterChange(updatedFilters);
+    }));
+  };
+
+  const handleApplyFilters = () => {
+    onFilterChange(selectedValues);
+  };
+
+  const handleResetFilters = () => {
+    setSelectedValues({});
+    onFilterChange({});
   };
 
   return (
@@ -54,12 +60,27 @@ export const FilterPanel = ({ filters, onFilterChange }: FilterPanelProps) => {
 
               {filter.type === "stars" && (
                 <StarRatingFilter
-                  value={filter.value ?? 0}
+                  value={selectedValues[filter.name] as number ?? 5}
                   onChange={(value) => handleFilterChange(filter.name, value)}
                 />
               )}
             </div>
           ))}
+
+          <div className="pt-4 border-t border-gray-100 space-y-2">
+            <button
+              onClick={handleApplyFilters}
+              className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors cursor-pointer"
+            >
+              Aplicar Filtros
+            </button>
+            <button
+              onClick={handleResetFilters}
+              className="w-full py-2 px-4 bg-[#FFD300] text-[#004AC1] transition-colors rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
+            >
+              Reiniciar Filtros
+            </button>
+          </div>
         </div>
       </div>
     </aside>

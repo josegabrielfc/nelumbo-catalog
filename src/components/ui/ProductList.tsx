@@ -5,16 +5,20 @@ import ProductModal from "./modal/ProductModal";
 import { Product } from "../../types/product";
 import { SortOption } from "../../types/sort";
 import { useSortProducts } from "../../hooks/useSortProducts";
+import { useFilterProducts } from "../../hooks/useFilterProducts";
+import { FilterValues } from "../interfaces/types";
 
 interface ProductListProps {
   sortBy?: SortOption;
+  filters: FilterValues;
 }
 
-export const ProductList = ({ sortBy }: ProductListProps) => {
+export const ProductList = ({ sortBy, filters }: ProductListProps) => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   
-  const sortedProducts = useSortProducts(mockProducts, sortBy);
+  const filteredProducts = useFilterProducts(mockProducts, filters);
+  const sortedProducts = useSortProducts(filteredProducts, sortBy);
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);

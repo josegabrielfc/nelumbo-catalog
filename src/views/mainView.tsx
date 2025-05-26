@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { mockProducts } from "../data/mockProducts";
+import { getUniqueBrands } from "../utils/productUtils";
 import { FilterSort } from "../components/ui/FilterSort";
 import { SearchPanel } from "../components/ui/SearchPanel";
 import { FilterPanel } from "../components/ui/FilterPanel/FilterPanel";
 import { ProductList } from "../components/ui/ProductList";
-import { Filter } from "../components/interfaces/types";
+import { Filter, FilterValues } from "../components/interfaces/types";
 import { SortOption } from "../types/sort";
 
 export const Main = () => {
   const [currentSort, setCurrentSort] = useState<SortOption>();
+  const [activeFilters, setActiveFilters] = useState<FilterValues>({});
 
   const sortOptions = [
     "Precio más bajo",
@@ -21,15 +24,7 @@ export const Main = () => {
       name: "brands",
       label: "Marcas",
       type: "checkbox",
-      options: [
-        { label: "Apple", value: "apple" },
-        { label: "Samsung", value: "samsung" },
-        { label: "Huawei", value: "huawei" },
-        { label: "Xiaomi", value: "xiaomi" },
-        { label: "Oppo", value: "oppo" },
-        { label: "Sony", value: "sony" },
-        { label: "OnePlus", value: "oneplus" },
-      ],
+      options: getUniqueBrands(mockProducts),
     },
     {
       name: "price",
@@ -44,8 +39,8 @@ export const Main = () => {
     },
   ];
 
-  const handleFilters = (selectedFilters: any) => {
-    console.log("Filtros activos:", selectedFilters);
+  const handleFilters = (selectedFilters: FilterValues) => {
+    setActiveFilters(selectedFilters);
   };
 
   return (
@@ -76,7 +71,7 @@ export const Main = () => {
             <FilterPanel filters={filters} onFilterChange={handleFilters} />
           </div>
           <div className="min-h-[calc(70vh-50px)]">
-            <ProductList sortBy={currentSort} />
+            <ProductList sortBy={currentSort} filters={activeFilters}/>
           </div>
         </div>
         {/* Layout móvil (por defecto) */}
@@ -97,7 +92,7 @@ export const Main = () => {
             <FilterPanel filters={filters} onFilterChange={handleFilters} />
           </div>
           <div className="min-h-[calc(50vh-50px)]">
-            <ProductList sortBy={currentSort} />
+            <ProductList sortBy={currentSort} filters={activeFilters}/>
           </div>
         </div>
       </div>
